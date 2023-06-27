@@ -84,6 +84,30 @@ fun main() {
     crunchyCookies?.forEach {
         println(it.name)
     }
+
+
+    // fold()
+    /*
+    The fold() function in Kotlin is a recursive function that accumulates
+    a value starting with an initial value and applying an operation from
+    left to right to the current accumulator value and each element. The
+    operation takes two arguments: the current accumulator value and the
+    element. The fold() function returns the accumulated value after
+    processing all the elements in the collection.
+     */
+
+    println("\nfold()")
+    val sum = numbers.fold(0) { acc, i -> acc + i }
+    println(sum)
+    // let's get total price of all cookies
+    val priceList = mutableListOf<Double>()
+    cookies.forEach {
+        priceList.add(it.price)
+    }
+    val priceListSum = priceList.fold(0.0){
+        accumulation, indexValue -> accumulation + indexValue
+    }
+    println("Total sum of price list: $priceListSum")
 }
 
 data class Cookie(
