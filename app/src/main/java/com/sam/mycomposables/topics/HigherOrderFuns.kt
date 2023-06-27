@@ -104,10 +104,38 @@ fun main() {
     cookies.forEach {
         priceList.add(it.price)
     }
-    val priceListSum = priceList.fold(0.0){
-        accumulation, indexValue -> accumulation + indexValue
+    val priceListSum = priceList.fold(0.0) { accumulation, indexValue ->
+        accumulation + indexValue
     }
     println("Total sum of price list: $priceListSum")
+
+
+    // reduce()
+    /*
+    Accumulates a value starting with the first element in the collection
+    and applying an operation from left to right to the current accumulator
+    value and each element.
+     */
+    println("\nreduce()")
+    val sumByReduce = numbers.reduce { accumulation, indexValue -> accumulation + indexValue }
+    println("Sum by reduce(): $sumByReduce")
+
+
+    // sortedBy()
+    println("\nsortedBy()")
+
+    println("Sorted by name:")
+    val sortedMenuByName = cookies.sortedBy { it.name }
+    sortedMenuByName.forEach {
+        println(it.name)
+    }
+
+    println("\nSorted by price")
+    val sortedMenuByPrice = cookies.sortedBy { it.price }
+    sortedMenuByPrice.forEach {
+        println("${it.name} - ${it.price}")
+    }
+
 }
 
 data class Cookie(
