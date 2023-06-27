@@ -1,5 +1,7 @@
 package com.sam.mycomposables.topics
 
+// fundamental in Higher order functions
+
 fun main() {
     val coins: (Int) -> String = {
             size -> "$size toppings"

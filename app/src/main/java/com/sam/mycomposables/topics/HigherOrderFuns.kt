@@ -1,0 +1,112 @@
+package com.sam.mycomposables.topics
+
+fun main() {
+    //using forEach
+    cookies.forEach {
+        println(it.name)
+    }
+
+    // using forEach to store items in a new list
+    val namesOfCookies = mutableListOf<String>()
+    cookies.forEach {
+        namesOfCookies.add(it.name)
+    }
+
+    println(namesOfCookies)
+
+    // using map()
+
+    val cookieShopMenu = cookies.map {
+        "${it.name} - Ksh. ${it.price}"
+    }
+
+    cookieShopMenu.forEach {
+        println(it)
+    }
+
+
+    // filter()
+    /*
+    The filter() function lets you create a subset of a collection.
+    For example, if you had a list of numbers, you could use filter()
+    to create a new list that only contains numbers divisible by 2.
+     */
+
+    val softBakedCookies = cookies.filter {
+        it.softBaked
+    }
+
+    println("\nFiltered SoftBaked Cookies: ")
+    softBakedCookies.forEach {
+        println("${it.name} - ${it.price}")
+    }
+
+
+    // groupBY()
+    /*
+    The groupBy() function can be used to turn a list into a map,
+    based on a function. Each unique return value of the function
+    becomes a key in the resulting map. The values for each key are
+    all the items in the collection that produced that unique return value.
+     */
+
+    // example: odd even numbers:
+    val numbers = listOf<Int>(1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 100)
+    val groupedNumbers = numbers.groupBy { it % 2 } // if the number is divisible by 2
+    val groupedNumbersKeys = groupedNumbers.keys
+    println(groupedNumbersKeys.toString())
+    val evenNumbers = mutableListOf<Int>()
+    groupedNumbers[0]?.forEach {
+        evenNumbers.add(it)
+    }
+
+    print("even numbers")
+    println(evenNumbers)
+
+    val oddNumbers = mutableListOf<Int>()
+    groupedNumbers[1]?.forEach {
+        oddNumbers.add(it)
+    }
+    print("odd numbers: $oddNumbers")
+
+    println()
+    println("\nNow we return to cookies")
+    val groupedMenu = cookies.groupBy { it.softBaked }
+
+    val smoothCookies = groupedMenu[true]
+    val crunchyCookies = groupedMenu[false]
+
+    println("Smooth grouped Cookies:")
+    smoothCookies?.forEach {
+        println(it.name)
+    }
+    println("\nCrunchy grouped Cookies: ")
+    crunchyCookies?.forEach {
+        println(it.name)
+    }
+}
+
+data class Cookie(
+    val name: String,
+    val softBaked: Boolean,
+    val hasFilling: Boolean,
+    val price: Double,
+)
+
+val cookies = listOf(
+    Cookie(
+        name = "Chocolate chip", softBaked = false, hasFilling = false, price = 1.69
+    ), Cookie(
+        name = "Banana Walnut", softBaked = true, hasFilling = false, price = 1.49
+    ), Cookie(
+        name = "Vanilla Creme", softBaked = false, hasFilling = true, price = 1.59
+    ), Cookie(
+        name = "Chocolate Peanut Butter", softBaked = false, hasFilling = true, price = 1.49
+    ), Cookie(
+        name = "Snicker doodle", softBaked = true, hasFilling = false, price = 1.39
+    ), Cookie(
+        name = "Blueberry Tart", softBaked = true, hasFilling = true, price = 1.79
+    ), Cookie(
+        name = "Sugar and Sprinkles", softBaked = false, hasFilling = false, price = 1.39
+    )
+)
