@@ -34,7 +34,8 @@ import androidx.compose.ui.unit.dp
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoadingButton(
-    icon: Int = R.mipmap.ic_launcher_round,
+    leadingIcon: Int = R.mipmap.ic_launcher_round,
+    trailingIcon: Int = R.mipmap.ic_launcher_round,
     onTap: () -> Unit = {}
 ) {
     var loading by remember {
